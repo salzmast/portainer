@@ -6,29 +6,19 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
-      - ${db_vol}:/var/lib/mysql
+      - ${vol_db}:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${sqlrootpw}
-      - MYSQL_PASSWORD=${sqlpw}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_PASSWORD: 12345
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
 
   app:
-    image: nextcloud:fpm
+    image: nextcloud
+    ports:
+      - ${port}:80
     links:
       - db
     volumes:
-      - ${nextcloud_vol}:/var/www/html
-    restart: always
-
-  web:
-    image: nginx
-    ports:
-      - ${publicport}:80
-    links:
-      - app
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    volumes_from:
-      - app
+      - ${vol_nextcloud}:/var/www/html
     restart: always
