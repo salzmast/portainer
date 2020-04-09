@@ -16,7 +16,7 @@ services:
   app:
     image: nextcloud
     ports:
-      - 8005:80
+      - ${port}:80
     links:
       - db
     volumes:
