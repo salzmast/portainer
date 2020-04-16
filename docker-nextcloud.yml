@@ -28,7 +28,5 @@ services:
     links:
       - app
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    volumes_from:
-      - app
+      - ${nginx}:/etc/nginx/nginx.conf
     restart: always
