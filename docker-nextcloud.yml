@@ -21,4 +21,5 @@ services:
       - db
     volumes:
       - ${nextcloud}:/var/www/html
+      - ${apache}:/etc/apache
     restart: always
