@@ -19,10 +19,10 @@ services:
     volumes:
       - ${nextcloud}:/var/www/html
     environment:
-      MYSQL_HOST: db
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: nextcloud
-      MYSQL_USER: nextcloud
+      - MYSQL_HOST=db
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
     depends_on:
       - db
 
