@@ -23,7 +23,6 @@ services:
       - MYSQL_USER=nextcloud
       - NEXTCLOUD_ADMIN_USER=${nextclouduser}
       - NEXTCLOUD_ADMIN_PASSWORD=${nextcloudpw}
-      - NEXTCLOUD_DATA_DIR=/opt/nextcloud/data
       - NEXTCLOUD_TRUSTED_DOMAINS=${domain}
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_AUTHTYPE=${SMTP_AUTHTYPE}
@@ -34,7 +33,7 @@ services:
     links:
       - db
     volumes:
-      - ${nextcloud}:/var/www/html
-      - ${nextclouddir}:/opt/nextcloud/data
+      - ${nextcloudappdir}:/var/www/html
+      - ${nextclouddatadir}:/var/www/html/data
       - ${apache}:/etc/apache2/sites-enabled
     restart: always
