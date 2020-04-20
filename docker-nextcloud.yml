@@ -34,5 +34,5 @@ services:
       - db
     volumes:
       - ${nextcloudappdir}:/var/www/html
-      - ${apache}:/etc/apache2/sites-enabled
+      - ${apache}:/etc/apache2/sites-available
     restart: always
